@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Головна сторінка</h1>
+    {% if posts %}
+        <div class="row">
+            {% for post in posts %}
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ post.title }}</h5>
+                            <p class="card-text">{{ post.content|truncatechars:100 }}</p>
+                            <a href="/post/{{ post.id }}/" class="btn btn-primary">Читати далі</a>
+                            <a href="/delete_post/{{ post.id }}/" class="btn btn-danger">Видалити</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Жодної статті поки що немає.</p>
+    {% endif %}
+{% endblock %}
